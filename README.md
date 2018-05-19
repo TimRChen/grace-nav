@@ -1,5 +1,11 @@
 # grace-nav
->   一款简洁且精致的导航主页.
+>  一款简洁且精致的导航主页.
+
+# develop process
+- [x]   整体布局
+- [ ]   右侧主题卡片样式设计
+- [ ]   左侧导航栏样式设计
+- [ ]   卡片hover动效设计
 
 # 产品初稿
 >  CopyRight by TimRChen.
