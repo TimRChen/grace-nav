@@ -1,12 +1,34 @@
 <template>
   <div class="main-container">
-    Main
+    <el-row :gutter="20">
+      <el-col :span="6" v-for="urlData in currentCollection" :key="urlData.name">
+        <el-card shadow="hover">
+          <a :href="urlData.url" target="_blank">
+            <div class="url-title">{{ urlData.name }}</div>
+            <div class="url-subtitle">{{ urlData.description }}</div>
+          </a>
+        </el-card>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+import URL_Collection from '../assets/url_collection.json' // 导入网址Json文件
+
 export default {
-  name: 'Main'
+  name: 'Main',
+  props: ['chooseTab'],
+  data () {
+    return {
+      currentCollection: []
+    }
+  },
+  watch: {
+    chooseTab: function (val) {
+      this.currentCollection = URL_Collection[val]
+    }
+  }
 }
 </script>
 

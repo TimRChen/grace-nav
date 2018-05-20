@@ -2,15 +2,16 @@
   <div class="aside-container">
     <el-row class="tac">
       <el-col>
-        <h5>Tim导航.</h5>
+        <h3>欢迎您使用Star导航</h3>
+        <h5>正在努力制作中.</h5>
         <el-menu
           default-active="0"
           class="el-menu-vertical-demo"
           background-color="#757F9A"
           text-color="#fff"
-          active-text-color="#78ffd6">
-          <el-menu-item v-for="(navTitle, index) in navTitleList" v-bind:index="String(index)" v-bind:key="navTitle.type">
-            <i class="el-icon-caret-right"></i>
+          active-text-color="#FFFF00">
+          <el-menu-item v-for="(navTitle, index) in navTitleList" :index="String(index)" :key="navTitle.type" @click="chooseNavType(navTitle.type)">
+            <i class="el-icon-star-on"></i>
             <span slot="title">{{ navTitle.name }}</span>
           </el-menu-item>
         </el-menu>
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Aside',
   data () {
@@ -30,19 +32,27 @@ export default {
           'type': 'hot'
         },
         {
-          'name': '音乐',        
+          'name': '音乐',
           'type': 'music'
         },
         {
-          'name': '工具',        
+          'name': '工具',
           'type': 'tool'
         },
         {
-          'name': '论坛',        
+          'name': '论坛',
           'type': 'forum'
         }
-      ]
+      ],
     }
+  },
+  methods: {
+    chooseNavType: function (tab) {
+      this.$emit('update:currentTab', tab)
+    }
+  },
+  mounted: function () {
+    this.$emit('update:currentTab', 'hot')
   }
 }
 </script>

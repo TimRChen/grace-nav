@@ -2,10 +2,10 @@
   <div id="app">
     <el-container>
       <el-aside width="200px">
-        <tim-aside></tim-aside>
+        <tim-aside :current-tab.sync="chooseTab"></tim-aside>
       </el-aside>
       <el-main>
-        <tim-main></tim-main>
+        <tim-main :choose-tab="chooseTab"></tim-main>
       </el-main>
     </el-container>
   </div>
@@ -20,6 +20,16 @@ export default {
   components: {
     TimAside,
     TimMain
+  },
+  data () {
+    return {
+      chooseTab: ''
+    }
+  },
+  watch: {
+    chooseTab: function (val) {
+      console.log(val)
+    }
   }
 }
 </script>
