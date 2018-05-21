@@ -32,8 +32,8 @@ export default {
           'type': 'hot'
         },
         {
-          'name': '音乐',
-          'type': 'music'
+          'name': '影音',
+          'type': 'media'
         },
         {
           'name': '工具',
