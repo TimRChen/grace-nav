@@ -17,6 +17,11 @@
         </el-menu>
       </el-col>
     </el-row>
+    <div class="friend-site">
+      <a href="http://www.timrchen.site" target="_blank">
+        <img src="https://image.timrchen.site/logo/timrchen_logo.png">
+      </a>
+    </div>
   </div>
 </template>
 
@@ -28,19 +33,19 @@ export default {
     return {
       navTitleList: [
         {
-          'name': '热门',
+          'name': '热门网址',
           'type': 'hot'
         },
         {
-          'name': '影音',
+          'name': '媒体综合',
           'type': 'media'
         },
         {
-          'name': '工具',
+          'name': '实用工具',
           'type': 'tool'
         },
         {
-          'name': '论坛',
+          'name': '有趣论坛',
           'type': 'forum'
         }
       ],
@@ -59,11 +64,28 @@ export default {
 
 <style scoped>
   .aside-container {
+    position: relative;
     height: 100%;
     color: #fff;
   }
   .el-menu {
     border-right: none!important;
+  }
+
+  .friend-site {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .friend-site a {
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .friend-site a img {
+    width: 100%;
+    height: 100%;
   }
 
 </style>

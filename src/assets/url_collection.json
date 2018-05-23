@@ -11,6 +11,16 @@
       "description": "优质的程序员社区"
     },
     {
+      "name": "Teambition",
+      "url": "https://www.teambition.com/",
+      "description": "在线团队协作工具"
+    },
+    {
+      "name": "Bilibili",
+      "url": "https://www.bilibili.com",
+      "description": "国内比较有意思的视频网站"
+    },
+    {
       "name": "知乎",
       "url": "https://www.zhihu.com",
       "description": "分享知识的地方..吧"
@@ -23,7 +33,7 @@
     {
       "name": "youtube",
       "url": "https://www.youtube.com",
-      "description": "这个不一定能打的开"
+      "description": "油管，一个视频网站"
     },
     {
       "name": "网易云音乐",
@@ -33,12 +43,12 @@
     {
       "name": "twitter",
       "url": "https://twitter.com",
-      "description": "这个不一定能打的开"
+      "description": "海外社交应用"
     },
     {
       "name": "reddit",
       "url": "https://www.reddit.com",
-      "description": "这个不一定能打的开"
+      "description": "社交新闻网站"
     }
   ],
   "media": [
@@ -50,15 +60,15 @@
     {
       "name": "youtube",
       "url": "https://www.youtube.com",
-      "description": "这个不一定能打的开"
+      "description": "油管，一个视频网站"
+    },
+    {
+      "name": "Bilibili",
+      "url": "https://www.bilibili.com",
+      "description": "国内比较有意思的视频网站"
     }
   ],
   "tool": [
-    {
-      "name": "Tiny Png",
-      "url": "https://tinypng.com",
-      "description": "快速压缩PNG图片"
-    },
     {
       "name": "草料二维码",
       "url": "https://cli.im",
@@ -73,6 +83,16 @@
       "name": "UI gradients",
       "url": "https://uigradients.com",
       "description": "轻松获得你想要的渐变配色"
+    },
+    {
+      "name": "Tiny Png",
+      "url": "https://tinypng.com",
+      "description": "快速压缩PNG图片"
+    },
+    {
+      "name": "Teambition",
+      "url": "https://www.teambition.com/",
+      "description": "在线团队协作工具"
     }
   ],
   "forum": [
@@ -89,7 +109,7 @@
     {
       "name": "reddit",
       "url": "https://www.reddit.com",
-      "description": "贴吧"
+      "description": "社交新闻网站"
     }
   ]
 }
