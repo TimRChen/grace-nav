@@ -18,9 +18,7 @@
       </el-col>
     </el-row>
     <div class="friend-site">
-      <a href="http://www.timrchen.site" target="_blank">
-        <img src="https://image.timrchen.site/logo/timrchen_logo.png">
-      </a>
+      <a href="http://www.timrchen.site" target="_blank">TimRChen</a>
     </div>
   </div>
 </template>
@@ -75,7 +73,7 @@ export default {
   .friend-site {
     width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 25px;
   }
 
   .friend-site a {

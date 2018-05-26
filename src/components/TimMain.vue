@@ -2,8 +2,11 @@
   <div class="main-container">
     <ul class="url-list">
       <li class="url-card-container" v-for="urlData in currentCollection" :key="urlData.name">
-        <a :href="urlData.url" target="_blank">
+        <a :href="(editState !== true) ? urlData.url : '#'" :target="(editState !== true) ? '_blank' : ''">
           <div class="card">
+            <div class="delete-icon" v-show="editState === true && !urlData.description" @click="deleteCard(urlData)">
+              <i class="el-icon-close"></i>
+            </div>
             <div class="url-title">{{ urlData.name }}</div>
             <div class="url-subtitle">{{ urlData.description }}</div>
           </div>
@@ -12,6 +15,11 @@
       <li class="extra-card-container">
         <div class="extra-card" @click="createLocalFavoriteSite">
           <i class="el-icon-plus"></i>
+        </div>
+      </li>
+      <li class="extra-card-container">
+        <div class="extra-card" @click="editCard">
+          <i class="el-icon-delete"></i>
         </div>
       </li>
     </ul>
@@ -29,7 +37,9 @@ export default {
   props: ['chooseTab'],
   data () {
     return {
-      currentCollection: []
+      currentCollection: [],
+      editState: false, // delete | normal
+      hasDelete: false // 是否已点击删除
     }
   },
   methods: {
@@ -71,16 +81,73 @@ export default {
         console.log('cancel')
       });
     },
+    editCard: function () {
+      let vm = this
+      let editState = vm.editState
+      vm.editState = !editState
+      let hasDelete = vm.hasDelete
+      // 超时不进行删除操作，则恢复卡片状态
+      let cancelTimer = setTimeout(function () {
+        if (hasDelete === false) vm.editState = false
+        clearTimeout(cancelTimer)
+      }, 5000)
+    },
+    // 删除提示
+    deleteTip: function () {
+      this.hasDelete = true
+      return this.$confirm('此操作将永久删除该片卡, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+    },
+    /**
+     * 删除自定义卡片
+     * @argument urlData 自定义卡片数据
+     */
+    deleteCard: function (urlData) {
+      this.deleteTip().then(res => {
+        console.log(res)
+        let currentCollection = this.currentCollection
+        let index = currentCollection.findIndex(value => value.name === urlData.name)
+        currentCollection.splice(index, 1)
+
+        let chooseTab = this.chooseTab
+        window.localStorage.removeItem(`userDefineCollection_${chooseTab}`)
+        let storageData = {
+          'hot': { 'hot': currentCollection },
+          'media': { 'media': currentCollection },
+          'tool': { 'tool': currentCollection },
+          'forum': { 'forum': currentCollection }
+        }
+        window.localStorage.setItem(`userDefineCollection_${chooseTab}`, JSON.stringify(storageData[chooseTab]))
+        this.currentCollection = currentCollection
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        });
+      }).catch(() => {
+        console.log('取消删除')       
+      });
+    },
     showTip: function () {
       const vm = this
-      let tipTimer = setTimeout(function () {
+      let addtipTimer = setTimeout(function () {
         vm.$notify.info({
           title: '如何增加一条新的网址?',
           message: '点击\'+\'加号，在输入框中输入网址名称与链接即可',
           position: 'top-right'
         })
-        clearTimeout(tipTimer)
+        clearTimeout(addtipTimer)
       }, 5000)
+      let deleteTipTimer = setTimeout(function () {
+        vm.$notify.warning({
+          title: '如何删除自定义网址卡片?',
+          message: '点击删除符号，并确认删除即可',
+          position: 'top-right'
+        })
+        clearTimeout(deleteTipTimer)
+      }, 8000)
     },
     showSuccess: function (msg) {
       this.$message({
@@ -138,6 +205,7 @@ export default {
     background-color: #fff;
     border-radius: 4px;
     height: 100%;
+    position: relative;
   }
 
   .card:hover {
@@ -156,6 +224,21 @@ export default {
   .card .url-subtitle {
     color: #888888;
     font-size: 14px;
+  }
+
+  .delete-icon {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: #888;
+    border-radius: 10px;
+    color: #fff;
+  }
+
+  .delete-icon:hover {
+    background-color: red;
   }
 
   .extra-card-container {
